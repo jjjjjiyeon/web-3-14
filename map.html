@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>MAP</title>
+<!-- Adobe Fonts (omnigothic) -->
+<script>
+  (function(d) {
+    var config = { kitId: 'lxq4gso', scriptTimeout: 3000, async: true },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+a{text-decoration:none;color:inherit;}
+html,body{height:100%;overflow:hidden;background:#000;}
+body{font-family:"omnigothic","Apple SD Gothic Neo","Malgun Gothic",sans-serif;color:#d2f56a;cursor:grab;}
+.map{position:absolute;top:0;left:0;width:2000px;height:1800px;transform-origin:0 0;}
+svg.lines{position:absolute;top:0;left:0;width:2000px;height:1800px;overflow:visible;pointer-events:none;}
+.edge{fill:none;stroke-width:2.5;}
+.edge.ey{stroke:#d2f56a;} .edge.en{stroke:#7d7d7d;}
+.qtext{position:absolute;font-size:30px;font-weight:600;line-height:1.35;color:#d2f56a;white-space:nowrap;}
+.node{position:absolute;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;cursor:pointer;z-index:5;transition:transform .15s;}
+.node:hover{transform:scale(1.12);}
+.node.ny{background:#d2f56a;color:#000;} .node.nn{background:#bdbdbd;color:#000;}
+.endpoint{position:absolute;font-size:34px;font-weight:600;color:#d2f56a;white-space:nowrap;cursor:pointer;}
+.endpoint:hover{text-decoration:underline;text-underline-offset:5px;}
+.home-btn{position:fixed;left:28px;top:28px;z-index:200;width:84px;height:84px;background:#d2f56a;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(0,0,0,.5);transition:transform .2s;cursor:pointer;}
+.home-btn:hover{transform:scale(1.07);}
+.home-btn svg{width:46%;height:46%;}
+</style></head><body>
+<div class="map" id="map">
+<svg class="lines" viewBox="0 0 2000 1800">
+<path d="M 640 205 L 864 205 L 864 276 L 910 276" class="edge ey"/>
+<path d="M 395 300 L 334 300 L 334 538 L 380 538" class="edge en"/>
+<path d="M 1310 250 L 1454 250 L 1454 397 L 1500 397" class="edge ey"/>
+<path d="M 930 360 L 974 360 L 974 466 L 1020 466" class="edge en"/>
+<path d="M 1345 500 L 1454 500 L 1454 577 L 1500 577" class="edge ey"/>
+<path d="M 1175 540 L 1074 540 L 1074 717 L 1120 717" class="edge en"/>
+<path d="M 560 600 L 804 600 L 804 623 L 850 623" class="edge ey"/>
+<path d="M 420 600 L 354 600 L 354 1036 L 400 1036" class="edge en"/>
+<path d="M 1010 665 L 1374 665 L 1374 771 L 1420 771" class="edge ey"/>
+<path d="M 900 665 L 644 665 L 644 817 L 690 817" class="edge en"/>
+<path d="M 1620 755 L 1774 755 L 1774 765 L 1820 765" class="edge ey"/>
+<path d="M 1385 825 L 904 825 L 904 956 L 950 956" class="edge en"/>
+<path d="M 1300 945 L 1514 945 L 1514 922 L 1560 922" class="edge ey"/>
+<path d="M 890 1010 L 1004 1010 L 1004 1077 L 1050 1077" class="edge en"/>
+<path d="M 740 1045 L 844 1045 L 844 1176 L 890 1176" class="edge ey"/>
+<path d="M 405 1115 L 434 1115 L 434 1411 L 480 1411" class="edge en"/>
+<path d="M 1410 1165 L 1654 1165 L 1654 1317 L 1700 1317" class="edge ey"/>
+<path d="M 905 1235 L 1494 1235 L 1494 1252 L 1540 1252" class="edge en"/>
+<path d="M 1070 1400 L 1084 1400 L 1084 1536 L 1130 1536" class="edge ey"/>
+<path d="M 560 1465 L 284 1465 L 284 216 L 330 216" class="edge en"/>
+<path d="M 1450 1525 L 1644 1525 L 1644 1482 L 1690 1482" class="edge ey"/>
+<path d="M 1080 1525 L 754 1525 L 754 1537 L 800 1537" class="edge en"/>
+</svg>
+<div class="qtext" id="q1" style="left:330px;top:180px;">지금 느끼는 감정이<br>‘그리움’과 비슷한가요?</div>
+<div class="node ny" data-target="q2" style="left:614px;top:179px;">Y</div>
+<div class="node nn" data-target="q4" style="left:369px;top:274px;">N</div>
+<div class="qtext" id="q2" style="left:910px;top:240px;">그리워 하는게<br>실제로 살아본적도 없는 시절인가요?</div>
+<div class="node ny" data-target="anemoia" style="left:1284px;top:224px;">Y</div>
+<div class="node nn" data-target="q3" style="left:904px;top:334px;">N</div>
+<div class="qtext" id="q3" style="left:1020px;top:430px;">당신은 지금 헌책방이나 오래된 물건을<br>보고 그리움을 느끼나요?</div>
+<div class="node ny" data-target="vellichor" style="left:1319px;top:474px;">Y</div>
+<div class="node nn" data-target="hiraeth" style="left:1149px;top:514px;">N</div>
+<div class="qtext" id="q4" style="left:380px;top:520px;">지금 타인을 생각중인가요?</div>
+<div class="node ny" data-target="q5" style="left:534px;top:574px;">Y</div>
+<div class="node nn" data-target="q7" style="left:394px;top:574px;">N</div>
+<div class="qtext" id="q5" style="left:850px;top:605px;">그 타인이 아는 사람인가요?</div>
+<div class="node ny" data-target="q6" style="left:984px;top:639px;">Y</div>
+<div class="node nn" data-target="sonder" style="left:874px;top:639px;">N</div>
+<div class="qtext" id="q6" style="left:1420px;top:735px;">그 사람과<br>더 가까워지고싶나요?</div>
+<div class="node ny" data-target="limerence" style="left:1594px;top:729px;">Y</div>
+<div class="node nn" data-target="q6b" style="left:1359px;top:799px;">N</div>
+<div class="qtext" id="q6b" style="left:950px;top:920px;">그 사람 뿐만 아니라<br>모두와 멀어지고싶나요?</div>
+<div class="node ny" data-target="mauer" style="left:1274px;top:919px;">Y</div>
+<div class="node nn" data-target="monachopsis" style="left:864px;top:984px;">N</div>
+<div class="qtext" id="q7" style="left:400px;top:1000px;">지금 느끼는 감정이,<br>당신이 있는 공간 때문인가요?</div>
+<div class="node ny" data-target="q8" style="left:714px;top:1019px;">Y</div>
+<div class="node nn" data-target="q9" style="left:379px;top:1089px;">N</div>
+<div class="qtext" id="q8" style="left:890px;top:1140px;">공간이 텅 비어있고,<br>오싹함을 느끼나요?</div>
+<div class="node ny" data-target="kenopsia" style="left:1384px;top:1139px;">Y</div>
+<div class="node nn" data-target="chrysalism" style="left:879px;top:1209px;">N</div>
+<div class="qtext" id="q9" style="left:480px;top:1375px;">자기 자신과 세상에 대해서<br>깨달은 기분인가요?</div>
+<div class="node ny" data-target="q10" style="left:1044px;top:1374px;">Y</div>
+<div class="node nn" data-target="q1" style="left:534px;top:1439px;">N</div>
+<div class="qtext" id="q10" style="left:1130px;top:1500px;">내가 살고 있는 세상이<br>너무 좁다고 느껴지나요?</div>
+<div class="node ny" data-target="occhiolism" style="left:1424px;top:1499px;">Y</div>
+<div class="node nn" data-target="onism" style="left:1054px;top:1499px;">N</div>
+<a class="endpoint" id="anemoia" href="dictionary.html" style="left:1500px;top:380px;">Anemoia</a>
+<a class="endpoint" id="vellichor" href="dictionary.html" style="left:1500px;top:560px;">Vellichor</a>
+<a class="endpoint" id="hiraeth" href="dictionary.html" style="left:1120px;top:700px;">Hiraeth</a>
+<a class="endpoint" id="sonder" href="dictionary.html" style="left:690px;top:800px;">Sonder</a>
+<a class="endpoint" id="limerence" href="dictionary.html" style="left:1820px;top:748px;">Limerence</a>
+<a class="endpoint" id="mauer" href="dictionary.html" style="left:1560px;top:905px;">Mauerbauertraurigkeit</a>
+<a class="endpoint" id="monachopsis" href="dictionary.html" style="left:1050px;top:1060px;">Monachopsis</a>
+<a class="endpoint" id="kenopsia" href="dictionary.html" style="left:1700px;top:1300px;">Kenopsia</a>
+<a class="endpoint" id="chrysalism" href="dictionary.html" style="left:1540px;top:1235px;">Chrysalism</a>
+<a class="endpoint" id="occhiolism" href="dictionary.html" style="left:1690px;top:1465px;">Occhiolism</a>
+<a class="endpoint" id="onism" href="dictionary.html" style="left:800px;top:1520px;">Onism</a>
+</div>
+<a href="index.html" class="home-btn" aria-label="홈으로"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="20" y1="12" x2="5" y2="12"></line><polyline points="11 5 4 12 11 19"></polyline></svg></a>
+<script>
+var map=document.getElementById('map');
+var st={x:0,y:0,s:1.9}, cur='q1';
+function apply(anim){ map.style.transition= anim?'transform 1.1s cubic-bezier(.6,.05,.25,1)':'none'; map.style.transform='translate('+st.x+'px,'+st.y+'px) scale('+st.s+')'; }
+function focus(id){ var el=document.getElementById(id); if(!el)return; cur=id;
+  var cx=el.offsetLeft+el.offsetWidth/2, cy=el.offsetTop+el.offsetHeight/2;
+  st.s=el.classList.contains('endpoint')?2.6:1.9;
+  st.x=innerWidth/2-cx*st.s; st.y=innerHeight/2-cy*st.s; apply(true); }
+document.querySelectorAll('.node').forEach(function(n){ n.addEventListener('click',function(){ if(window.__moved)return; focus(n.dataset.target); }); });
+window.addEventListener('resize',function(){ focus(cur); });
+var drag=false,px,py;
+addEventListener('pointerdown',function(e){ if(e.target.closest('.node,.endpoint,.home-btn'))return; drag=true;window.__moved=false;px=e.clientX;py=e.clientY;document.body.style.cursor='grabbing'; });
+addEventListener('pointermove',function(e){ if(!drag)return; var dx=e.clientX-px,dy=e.clientY-py; if(Math.abs(dx)+Math.abs(dy)>3)window.__moved=true; st.x+=dx;st.y+=dy;px=e.clientX;py=e.clientY;apply(false); });
+addEventListener('pointerup',function(){ drag=false;document.body.style.cursor='grab'; setTimeout(function(){window.__moved=false;},50); });
+addEventListener('wheel',function(e){ e.preventDefault();
+  if(e.ctrlKey){ var ns=Math.min(4,Math.max(0.4,st.s*Math.exp(-e.deltaY*0.0015)));
+    st.x=e.clientX-(e.clientX-st.x)*(ns/st.s); st.y=e.clientY-(e.clientY-st.y)*(ns/st.s); st.s=ns;
+  } else { st.x-=e.deltaX; st.y-=e.deltaY; }
+  apply(false);
+},{passive:false});
+focus('q1');
+</script>
+</body></html>
